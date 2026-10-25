@@ -1,54 +1,56 @@
+#include "Dicrector.h"
+#include "Prompts.h"
+#include <algorithm>
 #include <iostream>
 #include <stdio.h>
 #include <stdexcept>
 #include <thread>
 #include <chrono>
 #include <limits>
-#include "Dicrector.h"
-using namespace std; 
-     
-  /*  int InputProcesser ( int min,  int max)
+using namespace std;
+
+    int InputReader ( int min,  int max)
     {
-        int input;
-        while (true)
-        {
-            cin >> input;
-            if (cin.fail())
+       int choice;
+       string str;
+       bool check = false;
+    cout << Prompts::Choice;
+       while (check != true ) 
+       {
+            if (!getline (cin, str))
             {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input. Please enter a number: ";
+                throw runtime_error("Input stream closed unexpectedly.");
+
+            }
+            if (str.empty())
+            {
+                cout << "Input cannot be empty. Please enter a valid input: ";
                 continue;
             }
-            else
-            {
-                break;
-            }
-        }
-
-         while (true)
-        {
-            if (input < min || input > max)
-            {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input. Please enter a appropriate value: ";
+            if (!all_of(str.begin(), str.end(), [](unsigned char c){ return isdigit(c); }))
+             {
+                cout << "Input must be a digit. Please enter a valid input: ";
                 continue;
             }
+            if (stoi(str) < min || stoi(str) > max)
+            {
+                cout << "Input must be between " << min << " and " << max << ". Please enter a valid input: ";
+                continue;
+            }   
             else
             {
-                break;
+                check = true;
             }
-        }
-        return input;
-    };*/
-
+            choice  = stoi(str);
+       }
+       return choice;
+    };
 
     string InputReader(string tempo)
     {
         string temp;
         bool check = false;
-        printf("Enter your character's name(without numbers or special symbols): ");
+        cout << Prompts::Name;
        while (check != true ) 
        {
             if (!getline (cin, temp))
@@ -76,30 +78,15 @@ using namespace std;
     };
     
 
-
-
-
+    
     int main () 
     {
-        GameContext context;
         try {
-            
-        while (true)
-        {
-            auto it = SceneFunctions.find(context.CurrentScene);
-            if (it != SceneFunctions.end())
-            {
-                context.CurrentScene = it->second(context);
-            }
-            else
-            {
-                cout << "Invalid scene. Exiting game." << endl;
-                break;
-            }
-        };
-    
+            GameContext context;
+            RunGame(context);
         }
-        catch (const std::exception& e)
+
+         catch (const std::exception& e)
         {
             std::cerr << "An error occurred: " << e.what() << std::endl;
         }

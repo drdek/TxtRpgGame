@@ -5,7 +5,7 @@
 #include "CharLogic.h"
 #include "Dicrector.h"
 using namespace std;
-int InputProcesser ( int min,  int max);
+int InputReader ( int min,  int max);
 
 
   int GameTime () //internal game timer, can be used for showing time spent in game, or for time based events, or both etc.
@@ -45,7 +45,7 @@ Scenes ShowMainMenu(GameContext &context)
         cout << "3. Exit" << endl;
         cout << "Please select an option: ";
 
-        int choice = InputProcesser(1, 3);
+        int choice = InputReader(1, 3);
 
         switch (choice)
         {
@@ -71,7 +71,7 @@ Scenes ShowMainMenu(GameContext &context)
         cout << "3. Exit to Main Menu" << endl;
         cout << "Please select an option: ";
 
-        int choice = InputProcesser(1, 3);
+        int choice = InputReader(1, 3);
 
         switch (choice)
         {
@@ -96,7 +96,7 @@ Scenes ShowMainMenu(GameContext &context)
         cout << "3. Load Save (currently not working)" << endl;
         cout << "Please select an option: ";
 
-        int choice = InputProcesser(1, 3);
+        int choice = InputReader(1, 3);
 
         switch (choice)
         {
@@ -123,7 +123,7 @@ Scenes ShowMainMenu(GameContext &context)
 
         //ShowCharStats(Player); // Display player stats before making a choice
 
-        int choice = InputProcesser(1, 3);
+        int choice = InputReader(1, 3);
 
         switch (choice)
         {
@@ -151,7 +151,7 @@ Scenes ShowMainMenu(GameContext &context)
         
         //ShowCharStats(Player); // Display player stats before making a choice
 
-        int choice = InputProcesser(1, 3);
+        int choice = InputReader(1, 3);
 
         switch (choice)
         {
@@ -177,7 +177,7 @@ Scenes ShowMainMenu(GameContext &context)
         cout << "3. Exit Trade" << endl;
         cout << "Please select an option: ";
 
-        int choice = InputProcesser(1, 3);
+        int choice = InputReader(1, 3);
 
         switch (choice)
         {
@@ -204,7 +204,7 @@ Scenes ShowMainMenu(GameContext &context)
         cout << "4. Flee" << endl;
         cout << "Please select an option: ";
 
-        int choice = InputProcesser(1, 4);
+        int choice = InputReader(1, 4);
 
         switch (choice)
         {

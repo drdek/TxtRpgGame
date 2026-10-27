@@ -4,8 +4,8 @@
 #include "menu.h"
 #include "CharLogic.h"
 #include "Dicrector.h"
+#include "InputReader.h"
 using namespace std;
-int InputReader ( int min,  int max);
 
 
   int GameTime () //internal game timer, can be used for showing time spent in game, or for time based events, or both etc.
@@ -20,7 +20,7 @@ int InputReader ( int min,  int max);
     };
 
 
-    void ShowCharStats (HumanState &Player)
+    void ShowCharStats (const HumanState & Player)
     {
         cout << "Player Name: " << Player.name << endl;
         cout << "Health: " << Player.Health << endl;
@@ -30,10 +30,6 @@ int InputReader ( int min,  int max);
         cout << "Speed: " << Player.speed << endl;
   
     };
-
-
-Scenes SavedOverWorld(); // later implement saving in file and loading from file, for now just return to overworld start and varios save files
-
 
 
 
@@ -50,7 +46,7 @@ Scenes ShowMainMenu(GameContext &context)
         switch (choice)
         {
             case 1:
-                CreateCharacter; // goto CharLogic and create Character and start func
+                CreateCharacter(context.Player); // goto CharLogic and create Character and start func
                 return Scenes::Overworld;
             case 2:
                 // Load game logic here
@@ -121,7 +117,7 @@ Scenes ShowMainMenu(GameContext &context)
         cout << "3. Exit Inventory" << endl;
         cout << "Please select an option: ";
 
-        //ShowCharStats(Player); // Display player stats before making a choice
+        ShowCharStats(context.Player); // Display player stats before making a choice
 
         int choice = InputReader(1, 3);
 

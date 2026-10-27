@@ -9,8 +9,6 @@
 
 using namespace std;
 
-   
-
 
     void RunGame(GameContext &context)
     {
